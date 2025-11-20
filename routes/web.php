@@ -15,6 +15,34 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('vandaag', 'vandaag')
+    ->middleware(['auth', 'verified'])
+    ->name('vandaag');
+
+Route::view('morgen', 'morgen')
+    ->middleware(['auth', 'verified'])
+    ->name('morgen');
+
+Route::view('alles', 'alles')
+    ->middleware(['auth', 'verified'])
+    ->name('alles');    
+
+Route::view('school', 'school')
+    ->middleware(['auth', 'verified'])
+    ->name('school');
+
+Route::view('werk', 'werk')
+    ->middleware(['auth', 'verified'])
+    ->name('werk');
+
+Route::view('side-projecten', 'side-projecten')
+    ->middleware(['auth', 'verified'])
+    ->name('side-projecten');
+
+Route::view('privé', 'privé')
+    ->middleware(['auth', 'verified'])
+    ->name('privé');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
