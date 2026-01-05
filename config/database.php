@@ -1,6 +1,5 @@
 <?php
 
-use Faker\Calculator\Inn;
 use Illuminate\Support\Str;
 
 return [
@@ -58,7 +57,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
-            'engine' => innoDB,
+            'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 Pdo\Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
