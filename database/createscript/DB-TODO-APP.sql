@@ -1,7 +1,13 @@
-USE TODO_APP;
+-- DROP DATABASE IF EXISTS FW_TODO_APP;
+
+-- CREATE DATABASE FW_TODO_APP;
+
+USE FW_TODO_APP;
+
+-- users tabel is al gemaakt door laravel, dus gebruiken we die in de foreign keys
 
 CREATE TABLE Taken (
-    Id INT AUTO_INCREMENT PRIMARY KEY
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
     ,GebruikerId INT NOT NULL
     ,WeekNummer TINYINT NOT NULL
     ,Titel VARCHAR(100) NOT NULL
@@ -11,7 +17,7 @@ CREATE TABLE Taken (
     ,Opmerking VARCHAR(225) DEFAULT NULL
     ,DatumAangemaakt DATETIME(6) NOT NULL DEFAULT NOW(6)
     ,DatumGewijzigd DATETIME(6) NOT NULL DEFAULT NOW(6)
-    ,FOREIGN KEY (GebruikerId) REFERENCES users(Id)
+    ,FOREIGN KEY (GebruikerId) REFERENCES users(id)
 );
 
 INSERT INTO Taken (GebruikerId, WeekNummer, Titel, Beschrijving, Status, IsActief, Opmerking, DatumAangemaakt, DatumGewijzigd)
@@ -23,7 +29,7 @@ VALUES
 (1, 27, 'Taak 5', 'Beschrijving van taak 5', 'Afgerond', 1, 'Opmerking bij taak 5', NOW(6), NOW(6));
 
 CREATE TABLE Labels (
-    Id INT AUTO_INCREMENT PRIMARY KEY
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
     ,Label VARCHAR(100) NOT NULL 
 );
 
@@ -36,7 +42,7 @@ VALUES
 ('Hobby');
 
 CREATE TABLE TaakLabelKoppeling (
-    Id INT AUTO_INCREMENT PRIMARY KEY
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
     ,TaakId INT NOT NULL
     ,LabelId INT NOT NULL
     ,FOREIGN KEY (TaakId) REFERENCES Taken(Id)
@@ -52,13 +58,13 @@ VALUES
 (5, 5);
 
 CREATE TABLE WeekReflecties (
-    Id INT AUTO_INCREMENT PRIMARY KEY
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
     ,GebruikerId INT NOT NULL
     ,WeekNummer INT NOT NULL
     ,WatGeleerd VARCHAR(255) NULL
     ,WatLastig VARCHAR(255) NULL
     ,VolgendeStap VARCHAR(255) NULL
-    ,FOREIGN KEY (GebruikerId) REFERENCES users(Id)
+    ,FOREIGN KEY (GebruikerId) REFERENCES users(id)
 );
 
 INSERT INTO WeekReflecties (GebruikerId, WeekNummer, WatGeleerd, WatLastig, VolgendeStap)
