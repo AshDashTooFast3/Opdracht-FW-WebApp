@@ -1,8 +1,9 @@
-<x-layouts.app :title="__('Vandaag')" class="!p-0">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl !p-0">
-        <div class="border h-20 w-full">
-            <!--hier komt welkomsbericht ,nieuwe taak toevoegen-->
-        </div>
+<div class="flex flex-1 flex-col border h-20 w-full gap-4">
+    <!--hier komt welkomsbericht ,nieuwe taak toevoegen-->
+</div>
+<x-layouts.app :title="__('Vandaag')">
+
+    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl ">
         <div class="flex flex-row gap-4 flex-wrap">
             <div class="border flex-1 min-w-[200px] aspect-[3/1]">
                 <!--hier komt afgeronde taken-->

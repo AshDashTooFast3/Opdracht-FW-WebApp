@@ -6,6 +6,7 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\VandaagController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,7 +16,7 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('vandaag', 'vandaag')
+Route::get('vandaag', [VandaagController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('vandaag');
 
