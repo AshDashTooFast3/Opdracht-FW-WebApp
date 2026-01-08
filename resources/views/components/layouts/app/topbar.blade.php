@@ -2,7 +2,7 @@
     <p class="text-gray-400">Welkom Terug</p>
     <p>{{ $taak ?? $slot }}</p>
     <div class="absolute top-4 right-4 flex flex-row items-center gap-4 ">
-        <a class="border rounded-xl px-4 py-2" href="#">Nieuwe taak</a>
+        <a class="border rounded-xl px-4 py-1" href="#">Nieuwe taak</a>
         <x-layouts.app.userdropdown />
     </div>
     <!--hier komt welkomsbericht ,nieuwe taak toevoegen-->

@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('vandaag', [VandaagController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('vandaag');
