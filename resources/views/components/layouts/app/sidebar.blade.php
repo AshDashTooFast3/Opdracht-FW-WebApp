@@ -9,7 +9,7 @@
     <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-        <a href="{{ route('alles') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+        <a href="{{ route(name: 'alles') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:ignore>
             <x-app-logo />
         </a>
 
@@ -17,15 +17,15 @@
             <flux:navlist.group :heading="__('Platform')" class="grid">
                 <div class="mb-2">
                     <flux:navlist.item :href="route('vandaag')" :current="request()->routeIs('vandaag')"
-                        wire:navigate>{{ __('Vandaag') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Vandaag') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('morgen')" :current="request()->routeIs('morgen')"
-                        wire:navigate>{{ __('Morgen') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Morgen') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('alles')" :current="request()->routeIs('alles')"
-                        wire:navigate>{{ __('Alles') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Alles') }}</flux:navlist.item>
                 </div>
             </flux:navlist.group>
         </flux:navlist>
@@ -34,19 +34,19 @@
             <flux:navlist.group :heading="__('Categorieën')" class="grid">
                 <div class="mb-2">
                     <flux:navlist.item :href="route('school')" :current="request()->routeIs('school')"
-                        wire:navigate>{{ __('School') }}</flux:navlist.item>
+                        wire:ignore>{{ __('School') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('werk')" :current="request()->routeIs('werk')"
-                        wire:navigate>{{ __('Werk') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Werk') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('side-projecten')" :current="request()->routeIs('side-projecten')"
-                        wire:navigate>{{ __('Side Projecten') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Side Projecten') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('prive')" :current="request()->routeIs('prive')"
-                        wire:navigate>{{ __('Prive') }}</flux:navlist.item>
+                        wire:ignore>{{ __('Prive') }}</flux:navlist.item>
                 </div>
             </flux:navlist.group>
         </flux:navlist>
