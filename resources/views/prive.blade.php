@@ -1,7 +1,7 @@
 <div class="flex flex-1 flex-col border h-20 w-full gap-4">
     <!--hier komt welkomsbericht ,nieuwe taak toevoegen-->
 </div>
-<x-layouts.app :title="__('Morgen')">
+<x-layouts.app :title="__('Prive')">
 
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl ">
         <div class="flex flex-row gap-4 flex-wrap">

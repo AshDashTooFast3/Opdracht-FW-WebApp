@@ -1,48 +1,50 @@
 <?php
 
+use App\Http\Controllers\AllesController;
+use App\Http\Controllers\MorgenController;
+use App\Http\Controllers\PriveController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SideProjectenController;
+use App\Http\Controllers\VandaagController;
+use App\Http\Controllers\WerkController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
-use App\Http\Controllers\VandaagController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 Route::get('vandaag', [VandaagController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('vandaag');
 
-Route::view('morgen', 'morgen')
+Route::get('morgen', [MorgenController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('morgen');
 
-Route::view('alles', 'alles')
+Route::get('alles', [AllesController::class, 'index'])
     ->middleware(['auth', 'verified'])
-    ->name('alles');    
+    ->name('alles');
 
-Route::view('school', 'school')
+Route::get('school', [SchoolController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('school');
 
-Route::view('werk', 'werk')
+Route::get('werk', [WerkController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('werk');
 
-Route::view('side-projecten', 'side-projecten')
+Route::get('side-projecten', [SideProjectenController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('side-projecten');
 
-Route::view('privé', 'privé')
+Route::get('prive', [PriveController::class, 'index'])
     ->middleware(['auth', 'verified'])
-    ->name('privé');
+    ->name('prive');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

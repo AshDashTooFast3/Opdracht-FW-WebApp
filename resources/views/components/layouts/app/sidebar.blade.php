@@ -9,7 +9,7 @@
     <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-        <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+        <a href="{{ route('alles') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
             <x-app-logo />
         </a>
 
@@ -45,8 +45,8 @@
                         wire:navigate>{{ __('Side Projecten') }}</flux:navlist.item>
                 </div>
                 <div class="mb-2">
-                    <flux:navlist.item :href="route('privé')" :current="request()->routeIs('privé')"
-                        wire:navigate>{{ __('Privé') }}</flux:navlist.item>
+                    <flux:navlist.item :href="route('prive')" :current="request()->routeIs('prive')"
+                        wire:navigate>{{ __('Prive') }}</flux:navlist.item>
                 </div>
             </flux:navlist.group>
         </flux:navlist>
