@@ -11,10 +11,15 @@ class VandaagController extends Controller
     public function __construct()
     {
         $this->vandaag = new VandaagModel();
+        
     }
 
     public function index()
     {
-        return view('vandaag');
+        return view('vandaag', 
+        [
+            'taak' => "Jouw taken voor vandaag"
+        ]
+    );
     }
 }
