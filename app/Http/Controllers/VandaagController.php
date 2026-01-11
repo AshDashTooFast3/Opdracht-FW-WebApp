@@ -24,7 +24,6 @@ class VandaagController extends Controller
         $totaalTaken = $aantalAfgerondeTaken + $aantalOpenstaandeTaken;
         $percentage = $totaalTaken > 0 ? (int) round($aantalAfgerondeTaken / $totaalTaken * 100) : 0;
 
-
         return view('dashboard',
             [
                 'taak' => 'Jouw taken voor vandaag',

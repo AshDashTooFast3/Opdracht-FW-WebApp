@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('Taken', function (Blueprint $table) {
-            $table->id(); 
+            $table->Id(); 
             $table->foreignId('GebruikerId')
                 ->constrained('users')
                 ->cascadeOnDelete();
@@ -26,7 +26,7 @@ return new class extends Migration
         });
 
         Schema::create('Labels', function (Blueprint $table) {
-            $table->id(); 
+            $table->Id(); 
 
             $table->string('Label', 100);
             $table->boolean('IsActief')->default(true);
@@ -35,7 +35,7 @@ return new class extends Migration
         });
 
         Schema::create('TaakLabelKoppelingen', function (Blueprint $table) {
-            $table->id();
+            $table->Id();
             $table->foreignId('TaakId')
                 ->constrained('Taken')
                 ->cascadeOnDelete();
@@ -48,7 +48,7 @@ return new class extends Migration
         });
 
         Schema::create('WeekReflecties', function (Blueprint $table) {
-            $table->id(); 
+            $table->Id(); 
             $table->foreignId('GebruikerId')
                 ->constrained('users')
                 ->cascadeOnDelete();

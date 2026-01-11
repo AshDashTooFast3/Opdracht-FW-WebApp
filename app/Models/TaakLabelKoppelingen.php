@@ -12,6 +12,8 @@ class TaakLabelKoppelingen extends Model
 
     protected $table = 'TaakLabelKoppelingen';
 
+    protected $primaryKey = 'Id';
+
     protected $fillable = [
         'TaakId',
         'LabelId',

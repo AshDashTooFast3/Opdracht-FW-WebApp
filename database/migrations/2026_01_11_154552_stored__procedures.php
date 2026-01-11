@@ -14,25 +14,27 @@ return new class extends Migration
     {
 
         DB::unprepared('
-            DROP PROCEDURE IF EXISTS AantalTakenVanGebruiker;
-            
-            CREATE PROCEDURE AantalTakenVanGebruiker(
-                IN p_GebruikerId INT
-            )
-            BEGIN
-                SELECT
-                    SUM(Status = "Afgerond") AS AantalAfgerond,
-                    SUM(Status = "Open") AS AantalOpen
-                FROM Taken
-                WHERE GebruikerId = p_GebruikerId;
-            END
-        ');
+        DROP PROCEDURE IF EXISTS AantalTakenVanGebruiker;
+        
+        CREATE PROCEDURE AantalTakenVanGebruiker(
+            IN p_GebruikerId INT
+        )
+        BEGIN
+            SELECT
+                COALESCE(SUM(UPPER(TRIM(Status)) = "Afgerond"), 0) AS AantalAfgerond,
+                COALESCE(SUM(UPPER(TRIM(Status)) = "Open"), 0) AS AantalOpen
+            FROM Taken
+            WHERE GebruikerId = p_GebruikerId;
+        END
+    ');
+
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void {
+    public function down(): void
+    {
         DB::unprepared('DROP PROCEDURE IF EXISTS AantalTakenVanGebruiker');
     }
 };
