@@ -7,7 +7,6 @@ use App\Models\AllesModel;
 
 class AllesController extends Controller
 {
-    private $alles;
 
     public function index()
     {
