@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('achraf1532'),
         ]);
-        
+
         $this->call([
             LabelSeeder::class,
             TakenSeeder::class,

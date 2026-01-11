@@ -12,9 +12,6 @@ class LabelSeeder extends Seeder
      */
     public function run(): void
     {
-        Labels::create(['Label' => 'Belangrijk']);
-        Labels::create(['Label' => 'Dringend']);
-        Labels::create(['Label' => 'Beoordeling']);
-        Labels::create(['Label' => 'Afgerond']);
+        Labels::factory(4)->create();
     }
 }

@@ -17,7 +17,7 @@ class LabelsFactory extends Factory
     public function definition(): array
     {
         return [
-            'Label' => $this->faker->word()
+            'Label' => $this->faker->randomElement(['Belangrijk', 'Dringend','Beoordelen']),
         ];
     }
 }
