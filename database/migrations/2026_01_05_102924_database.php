@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('GebruikerId')
                 ->constrained('users')
                 ->cascadeOnDelete();
-
             $table->integer('WeekNummer');
             $table->string('Titel');
             $table->string('Beschrijving');
@@ -35,17 +34,28 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('TaakLabelKoppeling', function (Blueprint $table) {
+        Schema::create('TaakLabelKoppelingen', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('TaakId')
                 ->constrained('Taken')
                 ->cascadeOnDelete();
-
             $table->foreignId('LabelId')
                 ->constrained('Labels')
                 ->cascadeOnDelete();
+            $table->boolean('IsActief')->default(true);
+            $table->string('Opmerking')->nullable();
+            $table->timestamps();
+        });
 
+        Schema::create('WeekReflecties', function (Blueprint $table) {
+            $table->id(); 
+            $table->foreignId('GebruikerId')
+                ->constrained('users')
+                ->cascadeOnDelete();
+            $table->foreignId('TaakId')
+                ->constrained('Taken')
+                ->cascadeOnDelete();
+            $table->text('ReflectieTekst');
             $table->boolean('IsActief')->default(true);
             $table->string('Opmerking')->nullable();
             $table->timestamps();

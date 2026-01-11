@@ -1,11 +1,13 @@
-<x-layouts.app.topbar :taak="$taak"/>
+<x-layouts.app.topbar :taak="$taak" />
 
 <x-layouts.app :title="__('Vandaag')">
 
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl ">
         <div class="flex flex-row gap-4 flex-wrap">
             <div class="border rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
-                <!--hier komt afgeronde taken-->
+                <!--hier komt afgeronde taken van deze week-->
+                <h5 class="font-semibold m-4 text-xl">Deze week af:</h5>
+                {{-- voeg hier een lijst toe met afgeronde taken van deze week --}}
             </div>
             <div class="border rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
                 <!--hier komt openstaande taken-->
