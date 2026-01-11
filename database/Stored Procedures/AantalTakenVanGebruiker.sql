@@ -19,4 +19,3 @@ CREATE PROCEDURE AantalTakenVanGebruiker(
 
 DELIMITER ;
 
--- CALL AantalTakenVanGebruiker(1);
