@@ -5,27 +5,32 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-[#020617]">
-    <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-[#0D1528] dark:border-zinc-700 dark:bg-[#0D1528]">
+<body class="min-h-screen bg-white dark:bg-[#020617] text-lg">
+    <flux:sidebar sticky stashable
+        class="border-e border-zinc-200 bg-[#0D1528] dark:border-zinc-700 dark:bg-[#0D1528] ">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
         <a href="{{ route(name: 'alles') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:ignore>
             <x-app-logo />
         </a>
 
+
         <flux:navlist variant="outline">
             <flux:navlist.group :heading="__('Platform')" class="grid">
                 <div class="mb-2">
-                    <flux:navlist.item :href="route('vandaag')" :current="request()->routeIs('vandaag')" wire:ignore>
-                        {{ __('Vandaag') }}</flux:navlist.item>
+                    <flux:navlist.item :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:ignore>
+                        {{ __('Vandaag') }}
+                    </flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('morgen')" :current="request()->routeIs('morgen')" wire:ignore>
-                        {{ __('Morgen') }}</flux:navlist.item>
+                        {{ __('Morgen') }}
+                    </flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('alles')" :current="request()->routeIs('alles')" wire:ignore>
-                        {{ __('Alles') }}</flux:navlist.item>
+                        {{ __('Alles') }}
+                    </flux:navlist.item>
                 </div>
             </flux:navlist.group>
         </flux:navlist>
@@ -34,11 +39,13 @@
             <flux:navlist.group :heading="__('Categorieën')" class="grid">
                 <div class="mb-2">
                     <flux:navlist.item :href="route('school')" :current="request()->routeIs('school')" wire:ignore>
-                        {{ __('School') }}</flux:navlist.item>
+                        {{ __('School') }}
+                    </flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('werk')" :current="request()->routeIs('werk')" wire:ignore>
-                        {{ __('Werk') }}</flux:navlist.item>
+                        {{ __('Werk') }}
+                    </flux:navlist.item>
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('side-projecten')" :current="request()->routeIs('side-projecten')"
@@ -46,14 +53,15 @@
                 </div>
                 <div class="mb-2">
                     <flux:navlist.item :href="route('prive')" :current="request()->routeIs('prive')" wire:ignore>
-                        {{ __('Prive') }}</flux:navlist.item>
+                        {{ __('Prive') }}
+                    </flux:navlist.item>
                 </div>
             </flux:navlist.group>
         </flux:navlist>
 
         <flux:spacer />
     </flux:sidebar>
-    
+
     <flux:header class="lg:hidden">
     </flux:header>
 

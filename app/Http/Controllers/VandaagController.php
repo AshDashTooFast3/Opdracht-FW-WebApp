@@ -16,7 +16,7 @@ class VandaagController extends Controller
 
     public function index()
     {
-        return view('vandaag', 
+        return view('dashboard', 
         [
             'taak' => "Jouw taken voor vandaag"
         ]
