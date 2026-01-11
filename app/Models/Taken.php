@@ -38,7 +38,6 @@ class Taken extends Model
             'CALL AantalTakenVanGebruiker(?)',
             [$GebruikerId]
         );
-        dd($result);
 
         return [
             'afgerond' => (int) ($result[0]->AantalAfgerond ?? 0),
