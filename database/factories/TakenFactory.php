@@ -22,6 +22,10 @@ class TakenFactory extends Factory
             'Weeknummer' => date('W', strtotime('now')),
             'Beschrijving' => $this->faker->sentence(),
             'Status' => $this->faker->randomElement(['Open', 'Afgerond']),
+            'IsActief' => $this->faker->boolean(90),
+            'Opmerking' => $this->faker->optional()->sentence(),
+            'DatumAangemaakt' => $this->faker->dateTime(),
+            'DatumGewijzigd' => $this->faker->dateTime()
             
         ];
     }

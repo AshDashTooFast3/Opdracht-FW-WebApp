@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class WeekReflecties extends Model
@@ -16,12 +16,21 @@ class WeekReflecties extends Model
 
     public $timestamps = true;
 
+    const CREATED_AT = 'DatumAangemaakt';
+
+    const UPDATED_AT = 'DatumGewijzigd';
+
     protected $fillable = [
         'GebruikerId',
         'TaakId',
-        'ReflectieTekst',
+        'WeekNummer',
+        'WatGeleerd',
+        'WatLastig',
+        'VolgendeStap',
         'IsActief',
         'Opmerking',
+        'DatumAangemaakt',
+        'DatumGewijzigd',
     ];
 
     public function gebruiker()

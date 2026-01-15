@@ -14,9 +14,18 @@ class TaakLabelKoppelingen extends Model
 
     protected $primaryKey = 'Id';
 
+    public $timestamps = true;
+
+    const CREATED_AT = 'DatumAangemaakt';
+
+    const UPDATED_AT = 'DatumGewijzigd';
     protected $fillable = [
         'TaakId',
         'LabelId',
+        'IsActief',
+        'Opmerking',
+        'DatumAangemaakt',
+        'DatumGewijzigd',
     ];
 
     public function taak()

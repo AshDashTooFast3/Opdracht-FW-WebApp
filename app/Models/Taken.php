@@ -17,6 +17,10 @@ class Taken extends Model
 
     public $timestamps = true;
 
+    const CREATED_AT = 'DatumAangemaakt';
+
+    const UPDATED_AT = 'DatumGewijzigd';
+
     protected $fillable = [
         'GebruikerId',
         'WeekNummer',
@@ -25,6 +29,8 @@ class Taken extends Model
         'Status',
         'IsActief',
         'Opmerking',
+        'DatumAangemaakt',
+        'DatumGewijzigd',
     ];
 
     public function gebruiker()
@@ -32,16 +38,13 @@ class Taken extends Model
         return $this->belongsTo(User::class, 'GebruikerId');
     }
 
-    public function AantalTakenVanGebruiker(int $GebruikerId): array
+    public function getAllTakenById(int $GebruikerId): array
     {
         $result = DB::select(
-            'CALL AantalTakenVanGebruiker(?)',
+            'CALL getAllTakenById(?)',
             [$GebruikerId]
         );
 
-        return [
-            'afgerond' => (int) ($result[0]->AantalAfgerond ?? 0),
-            'open' => (int) ($result[0]->AantalOpen ?? 0),
-        ];
+        return $result;
     }
 }

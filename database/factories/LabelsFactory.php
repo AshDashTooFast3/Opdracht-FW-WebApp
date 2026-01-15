@@ -18,6 +18,10 @@ class LabelsFactory extends Factory
     {
         return [
             'Label' => $this->faker->randomElement(['Belangrijk', 'Dringend','Beoordelen']),
+            'IsActief' => $this->faker->boolean(90),
+            'Opmerking' => $this->faker->optional()->sentence(),
+            'DatumAangemaakt' => $this->faker->dateTime(),
+            'DatumGewijzigd' => $this->faker->dateTime(),
         ];
     }
 }

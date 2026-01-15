@@ -13,7 +13,7 @@
                 </h5>
                 <div class="font-semibold m-4">
                     <p class="text-3xl">{{ $aantalAfgerondeTaken }} Taken</p>
-
+                    <br>
                     @if ($aantalAfgerondeTaken === 0)
                         <em>Je bent klaar met al jouw taken!</em>
                     @elseif ($aantalAfgerondeTaken === 1)
@@ -37,7 +37,7 @@
                 </h5>
                 <div class="font-semibold m-4">
                     <p class="text-3xl">{{ $aantalOpenstaandeTaken }} Taken</p>
-
+                    <br>
                     @if ($aantalOpenstaandeTaken === 0)
                         <em>Je bent klaar met al jouw taken!</em>
                     @elseif ($aantalOpenstaandeTaken === 1)
@@ -85,9 +85,16 @@
         <div class="flex flex-row gap-4 flex-wrap">
 
             <div class="border flex-[2] min-w-[300px] aspect-[2/1]">
-                <!-- hier komt de agenda van vandaag -->
+                <p class="text-2xl font-semibold m-4">Taken voor dit project:</p>
+                <hr>
             </div>
-
+            {{-- <div class="font-semibold m-4">
+                <select name="taken_voor_dit_project" id="taken_voor_dit_project">
+                    @foreach ($takenVoorDitProject as $taak)
+                        <option value="{{ $taak->id }}">{{ $taak->titel }} - {{ $taak->beschrijving }}</option>
+                    @endforeach
+                </select>
+            </div> --}}
             <div class="border flex-1 min-w-[150px] aspect-[2/1] p-2">
                 <p class="text-lg font-semibold">Reflectie van deze week</p>
                 <br>

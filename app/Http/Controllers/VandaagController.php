@@ -17,12 +17,33 @@ class VandaagController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $aantallen = $this->taakModel->AantalTakenVanGebruiker($GebruikerId);
+        $taken = $this->taakModel->getAllTakenById($GebruikerId);
 
-        $aantalAfgerondeTaken = $aantallen['afgerond'];
-        $aantalOpenstaandeTaken = $aantallen['open'];
+        // Initialize aantallen as array of objects
+        $aantallen = [
+            (object) ['AantalAfgerond' => 0],
+            (object) ['AantalOpen' => 0],
+        ];
+
+        // Loop over all taken
+        foreach ($taken as $taak) {
+            if (isset($taak->Status) && $taak->Status === 'Afgerond') {
+                $aantallen[0]->AantalAfgerond += 1;
+            } else {
+                $aantallen[1]->AantalOpen += 1;
+            }
+        }
+
+        // Aantal afgeronde taken
+        $aantalAfgerondeTaken = $aantallen[0]->AantalAfgerond ?? 0;
+        // Aantal openstaande taken
+        $aantalOpenstaandeTaken = $aantallen[1]->AantalOpen ?? 0;
+        // Totaal aantal taken
         $totaalTaken = $aantalAfgerondeTaken + $aantalOpenstaandeTaken;
+        // Bereken het percentage afgeronde taken
         $percentage = $totaalTaken > 0 ? (int) round($aantalAfgerondeTaken / $totaalTaken * 100) : 0;
+
+        // debug:
 
         return view('dashboard',
             [
