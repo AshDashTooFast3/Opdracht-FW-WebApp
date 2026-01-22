@@ -27,6 +27,7 @@ class Taken extends Model
         'Titel',
         'Beschrijving',
         'Status',
+        'Deadline',
         'IsActief',
         'Opmerking',
         'DatumAangemaakt',

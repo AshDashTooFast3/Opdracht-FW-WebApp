@@ -7,6 +7,7 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SideProjectenController;
 use App\Http\Controllers\VandaagController;
 use App\Http\Controllers\WerkController;
+use App\Http\Controllers\TakenController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -25,6 +26,15 @@ Route::get('/dashboard', [VandaagController::class, 'index'])
 Route::post('/taak/check', [VandaagController::class, 'checkTaak'])
     ->middleware(['auth', 'verified'])
     ->name('checkTaak');
+
+//taken CRUD routes
+Route::get('taken/create', [TakenController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('taken.create');
+
+Route::post('taken/store', [TakenController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('taken.store');
 
 Route::get('morgen', [MorgenController::class, 'index'])
     ->middleware(['auth', 'verified'])

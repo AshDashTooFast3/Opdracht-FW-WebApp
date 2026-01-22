@@ -1,4 +1,4 @@
-<x-layouts.app.topbar :taak="$titel" />
+<x-layouts.app.topbar :taak="auth()->user()->name" />
 
 <x-layouts.app :title="__('Vandaag')">
 
@@ -128,24 +128,24 @@
                 <p class="text-2xl font-semibold m-4">Deadline:</p>
                 <hr class="text-gray-600">
                 <div class="font-semibold m-4">
-                    @forelse ($taken as $taak)
-                        @if ($taak->Status !== 'Afgerond')
-                            <div class="mb-3 bg-gray-800 p-2 rounded-lg">
-                                <p class="text-xl">
-                                    {{ $taak->Titel }} <br> 
-                                </p>
-                                <p class="text-red-400">
-                                    Deadline:
-                                    <br>
-                                    {{ \Carbon\Carbon::parse($taak->Deadline)->format('d-m-Y') }}
-                                </p>
-                            </div>
-                        @elseif($loop->last)
-                            <em class="text-green-400">Geen openstaande deadlines</em>
-                        @endif
-                    @empty
-                        <em class="text-yellow-400">Geen openstaande deadlines</em>
-                    @endforelse
+                    @if ($taken->where('Status', '!=', 'Afgerond')->count() > 0)
+                        @foreach ($taken as $taak)
+                            @if ($taak->Status !== 'Afgerond')
+                                <div class="mb-3 bg-gray-800 p-2 rounded-lg">
+                                    <p class="text-xl">
+                                        {{ $taak->Titel }} <br> 
+                                    </p>
+                                    <p class="text-red-400">
+                                        Deadline:
+                                        <br>
+                                        {{ \Carbon\Carbon::parse($taak->Deadline)->format('d-m-Y') }}
+                                    </p>
+                                </div>
+                            @endif
+                        @endforeach
+                    @else
+                        <em class="text-green-400">Geen openstaande deadlines</em>
+                    @endif
                 </div>
             </div>
         </div>
