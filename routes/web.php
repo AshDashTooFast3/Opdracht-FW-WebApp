@@ -22,6 +22,10 @@ Route::get('/dashboard', [VandaagController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::post('/taak/check', [VandaagController::class, 'checkTaak'])
+    ->middleware(['auth', 'verified'])
+    ->name('checkTaak');
+
 Route::get('morgen', [MorgenController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('morgen');

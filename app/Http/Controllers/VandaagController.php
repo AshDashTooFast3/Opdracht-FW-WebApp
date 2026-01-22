@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Taken;
+use Illuminate\Http\Request;
 
 class VandaagController extends Controller
 {
@@ -19,25 +20,18 @@ class VandaagController extends Controller
 
         $taken = $this->taakModel->getAllTakenById($GebruikerId);
 
-        // Initialize aantallen as array of objects
-        $aantallen = [
-            (object) ['AantalAfgerond' => 0],
-            (object) ['AantalOpen' => 0],
-        ];
+        $aantalAfgerondeTaken = 0;
+        $aantalOpenstaandeTaken = 0;
 
-        // Loop over all taken
+        // Tel afgeronde en openstaande taken
         foreach ($taken as $taak) {
-            if (isset($taak->Status) && $taak->Status === 'Afgerond') {
-                $aantallen[0]->AantalAfgerond += 1;
+            if ($taak->Status === 'Afgerond') {
+                $aantalAfgerondeTaken++;
             } else {
-                $aantallen[1]->AantalOpen += 1;
+                $aantalOpenstaandeTaken++;
             }
         }
 
-        // Aantal afgeronde taken
-        $aantalAfgerondeTaken = $aantallen[0]->AantalAfgerond ?? 0;
-        // Aantal openstaande taken
-        $aantalOpenstaandeTaken = $aantallen[1]->AantalOpen ?? 0;
         // Totaal aantal taken
         $totaalTaken = $aantalAfgerondeTaken + $aantalOpenstaandeTaken;
         // Bereken het percentage afgeronde taken
@@ -47,11 +41,26 @@ class VandaagController extends Controller
 
         return view('dashboard',
             [
-                'taak' => 'Jouw taken voor vandaag',
+                'titel' => 'Jouw taken voor vandaag',
+                'taken' => $taken,
                 'aantalAfgerondeTaken' => $aantalAfgerondeTaken,
                 'aantalOpenstaandeTaken' => $aantalOpenstaandeTaken,
                 'percentage' => $percentage,
             ]
         );
+    }
+
+    public function checkTaak(Request $request)
+    {
+        $taak = Taken::findOrFail($request->taak_id);
+
+        // Toggle status
+        $taak->Status = $taak->Status === 'Afgerond'
+            ? 'Open'
+            : 'Afgerond';
+
+        $taak->save();
+
+        return redirect()->route('dashboard');
     }
 }
