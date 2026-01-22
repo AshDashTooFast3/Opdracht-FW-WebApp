@@ -7,34 +7,46 @@
         <div class="flex flex-row gap-4 flex-wrap">
 
             {{-- AFGeronde taken --}}
-            <div class="border rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
-                <h5 class="font-semibold m-4 text-green-400 text-2xl">
+            <div class="bg-gray-900 rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
+                <h5 class="font-semibold m-4 text-2xl text-gray-300">
                     Afgeronde taken:
                 </h5>
                 <div class="font-semibold m-4">
                     <p class="text-3xl"">{{ $aantalAfgerondeTaken }} Taken</p>
                     <br>
                     @if ($aantalAfgerondeTaken === 0)
-                        <em>Je hebt nog geen taken afgerond!</em>
+                        <br>
+                        <em class="text-green-200">
+                            Je hebt nog geen taken afgerond!
+                        </em>
+                    @elseif ($percentage === 100)
+                        <br>
+                        <em class=" text-green-600">
+                            Geweldig werk! Je hebt alle taken afgerond!
+                        </em>
                     @else
                         <br>
                         <em class=" text-green-400">
-                        Goed gedaan! Je hebt deze taken afgerond!
+                        Lekker bezig! Ga zo door!
                         </em>
+                    
                     @endif
                 </div>
             </div>
 
             {{-- Openstaande taken --}}
-            <div class="border rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
-                <h5 class="font-semibold m-4 text-yellow-400 text-2xl">
+            <div class="bg-gray-900 rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
+                <h5 class="font-semibold m-4 text-2xl text-gray-300">
                     Taken die nog moeten gedaan worden:
                 </h5>
                 <div class="font-semibold m-4">
                     <p class="text-3xl">{{ $aantalOpenstaandeTaken }} Taken</p>
                     <br>
                     @if ($aantalOpenstaandeTaken === 0)
-                        <em>Je bent klaar met al jouw taken!</em>
+                        <br>
+                        <em class="text-green-200">
+                            Je bent klaar met al jouw taken!
+                        </em>
                     @elseif ($aantalOpenstaandeTaken === 1)
                         <br>
                         <em class="text-yellow-400">
@@ -50,8 +62,8 @@
             </div>
 
             {{-- Voortgang --}}
-            <div class="border rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
-                <h5 class="font-semibold m-4 text-2xl text-blue-400">
+            <div class="bg-gray-900 rounded-xl flex-1 min-w-[200px] aspect-[3/1]">
+                <h5 class="font-semibold m-4 text-2xl text-gray-300">
                     Uw voortgang van het project:
                 </h5>
 
@@ -60,14 +72,17 @@
                     <br>
 
                     @if ($percentage == 100)
+                    <br>
                         <em class="text-blue-600">
                             U bent klaar met dit project!
                         </em>
                     @elseif ($percentage > 0)
+                    <br>
                         <em class="text-blue-400">
                             Goed bezig! Ga zo door!
                         </em>
                     @else
+                    <br>
                         <em class="text-blue-200">
                             laten we staren met werken aan dit project!
                         </em>
@@ -77,8 +92,7 @@
         </div>
 
         <div class="flex flex-row gap-4 flex-wrap">
-
-            <div class="border flex-[2] min-w-[300px] aspect-[2/1]">
+            <div class="bg-gray-900 flex-[2] min-w-[300px] aspect-[2/1] p-2">
                 <p class="text-2xl font-semibold m-4">Taken voor dit project:</p>
                 <hr>
                 <div class="font-semibold m-4">
@@ -88,42 +102,50 @@
                             <input type="hidden" name="taak_id" value="{{ $taak->id }}">
 
                             <div @class([
-                                'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-800',
-                                'bg-green-300 border-green-200' => $taak->Status === 'Afgerond',
-                                'bg-gray-500 border-gray-200' => $taak->Status !== 'Afgerond'
-                            ])>
-
+        'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-2',
+        'bg-green-500 border-green-200' => $taak->Status === 'Afgerond',
+        'bg-gray-800 border-gray-200' => $taak->Status !== 'Afgerond'
+    ])>
                                 <input type="checkbox" class="mt-1 cursor-pointer" onchange="this.form.submit()" 
                                     {{ $taak->Status === 'Afgerond' ? 'checked' : '' }}>
 
                                 <div class="flex-1">
-                                    <span @class(['font-semibold text-sm', 'line-through text-gray-400' => $taak->Status === 'Afgerond'])>
+                                    <span @class(['font-semibold text-xl', 'line-through' => $taak->Status === 'Afgerond'])>
                                         {{ $taak->Titel }}
                                     </span>
-
-                                    @if (!empty($taak->Beschrijving))
-                                        <p class="text-xs text-gray-600 mt-1">{{ $taak->Beschrijving }}</p>
-                                    @endif
+                                    <p @class(['text-s text-white mt-1', 'line-through' => $taak->Status === 'Afgerond'])>
+                                        {{ $taak->Beschrijving }}
+                                    </p>
                                 </div>
-
                             </div>
                         </form>
                     @endforeach
                 </div>
             </div>
-            <div class="border flex-1 min-w-[150px] aspect-[2/1] p-2">
-                <p class="text-lg font-semibold">Reflectie van deze week</p>
-                <br>
 
-                <p>Wat heb je geleerd?</p>
-                <br>
-
-                <p>Wat vond je lastig?</p>
-                <br>
-
-                <p>Volgende stap:</p>
+            {{-- Deadlines --}}
+            <div class="bg-gray-900 flex-1 min-w-[150px] aspect-[2/1] p-2 rounded-xl">
+                <p class="text-2xl font-semibold m-4">Deadline:</p>
+                <hr>
+                <div class="font-semibold m-4">
+                    @forelse ($taken as $taak)
+                        @if ($taak->Status !== 'Afgerond')
+                            <div class="mb-4 bg-gray-800 p-2 rounded-lg">
+                                <p class="text-xl">
+                                    {{ $taak->Titel }} <br> 
+                                </p>
+                                <p class="text-red-400">
+                                    Deadline:
+                                    <br>
+                                    {{ \Carbon\Carbon::parse($taak->Deadline)->format('d-m-Y') }}
+                                </p>
+                            </div>
+                        @endif
+                    @empty
+                        <em class="text-green-400">Geen openstaande taken!</em>
+                    @endforelse
+                </div>
             </div>
-
         </div>
     </div>
 </x-layouts.app>

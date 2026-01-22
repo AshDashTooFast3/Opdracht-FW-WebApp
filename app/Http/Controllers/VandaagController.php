@@ -18,7 +18,7 @@ class VandaagController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $taken = $this->taakModel->getAllTakenById($GebruikerId);
+        $taken = collect($this->taakModel->getAllTakenById($GebruikerId));
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;
