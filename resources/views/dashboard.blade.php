@@ -94,7 +94,7 @@
         <div class="flex flex-row gap-4 flex-wrap">
             <div class="bg-gray-900 flex-[2] min-w-[300px] aspect-[2/1] p-2">
                 <p class="text-2xl font-semibold m-4">Taken voor dit project:</p>
-                <hr>
+                <hr class="text-gray-600">
                 <div class="font-semibold m-4">
                     @foreach ($taken as $taak)
                         <form action="{{ route('checkTaak') }}" method="POST" class="taak-form">
@@ -102,9 +102,9 @@
                             <input type="hidden" name="taak_id" value="{{ $taak->id }}">
 
                             <div @class([
-        'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-2',
-        'bg-green-500 border-green-200' => $taak->Status === 'Afgerond',
-        'bg-gray-800 border-gray-200' => $taak->Status !== 'Afgerond'
+        'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-3',
+        'bg-green-500 border-green-600' => $taak->Status === 'Afgerond',
+        'bg-gray-800 border-gray-600' => $taak->Status !== 'Afgerond'
     ])>
                                 <input type="checkbox" class="mt-1 cursor-pointer" onchange="this.form.submit()" 
                                     {{ $taak->Status === 'Afgerond' ? 'checked' : '' }}>
@@ -126,11 +126,11 @@
             {{-- Deadlines --}}
             <div class="bg-gray-900 flex-1 min-w-[150px] aspect-[2/1] p-2 rounded-xl">
                 <p class="text-2xl font-semibold m-4">Deadline:</p>
-                <hr>
+                <hr class="text-gray-600">
                 <div class="font-semibold m-4">
                     @forelse ($taken as $taak)
                         @if ($taak->Status !== 'Afgerond')
-                            <div class="mb-4 bg-gray-800 p-2 rounded-lg">
+                            <div class="mb-3 bg-gray-800 p-2 rounded-lg">
                                 <p class="text-xl">
                                     {{ $taak->Titel }} <br> 
                                 </p>
@@ -140,9 +140,11 @@
                                     {{ \Carbon\Carbon::parse($taak->Deadline)->format('d-m-Y') }}
                                 </p>
                             </div>
+                        @elseif($loop->last)
+                            <em class="text-green-400">Geen openstaande deadlines</em>
                         @endif
                     @empty
-                        <em class="text-green-400">Geen openstaande taken!</em>
+                        <em class="text-yellow-400">Geen openstaande deadlines</em>
                     @endforelse
                 </div>
             </div>
