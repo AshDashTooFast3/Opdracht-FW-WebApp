@@ -9,18 +9,18 @@ CREATE PROCEDURE getAllTakenById(
 )
 
 BEGIN 
-	SELECT t.id,
+	SELECT t.Id,
 		   t.WeekNummer,
 		   t.Titel,
 		   t.Beschrijving,
 		   t.Status,
 		   t.Deadline
 	FROM Taken t
-	INNER JOIN TaakLabelKoppelingen tlk ON t.id = tlk.TaakId
-	WHERE t.id = tlk.TaakId
+	INNER JOIN TaakLabelKoppelingen tlk ON t.Id = tlk.TaakId
+	WHERE t.Id = tlk.TaakId
     AND tlk.GebruikerId = p_GebruikerId
     AND tlk.IsActief = 1;
-END$$-
+END$$
 
 DELIMITER ;
 

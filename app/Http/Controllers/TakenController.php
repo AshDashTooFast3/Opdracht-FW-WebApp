@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TaakLabelKoppelingen;
 use App\Models\Taken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TakenController extends Controller
 {
     private $takenModel;
 
+    private $takenLabelsKoppel;
+
     public function __construct()
     {
         $this->takenModel = new Taken;
+        $this->takenLabelsKoppel = new TaakLabelKoppelingen;
     }
 
     public function create()
@@ -23,19 +28,29 @@ class TakenController extends Controller
 
     public function store(Request $request)
     {
+        $userId = auth()->user()->id;
+
         $validated = $request->validate([
             'titel' => 'required|string|max:255',
             'beschrijving' => 'required|string',
             'deadline' => 'required|date',
         ]);
 
-        Taken::create([
-            'GebruikerId' => auth()->user()->id,
+        $taak = Taken::create([
+            'id' => (string) Str::uuid(),
+            'GebruikerId' => $userId,
             'Titel' => $validated['titel'],
             'Beschrijving' => $validated['beschrijving'],
             'WeekNummer' => now()->weekOfYear,
             'Deadline' => $validated['deadline'],
-            'Status' => 'Openstaand',
+            'Status' => 'Open',
+            'IsActief' => true,
+        ]);
+
+        TaakLabelKoppelingen::create([
+            'TaakId' => $taak->Id,
+            'LabelId' => 1,
+            'GebruikerId' => $userId,
             'IsActief' => true,
         ]);
 

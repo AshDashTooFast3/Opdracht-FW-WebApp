@@ -22,6 +22,7 @@ class TaakLabelKoppelingen extends Model
     protected $fillable = [
         'TaakId',
         'LabelId',
+        'GebruikerId',
         'IsActief',
         'Opmerking',
         'DatumAangemaakt',
