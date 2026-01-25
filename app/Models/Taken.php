@@ -63,6 +63,42 @@ class Taken extends Model
         }
     }
 
+    public function updateTaakById(int $Id, array $data): bool
+    {
+        try {
+            if (empty($Id) || empty($data)) {
+                Log::warning('Ongeldig taak Id of data opgegeven voor update', ['TaakId' => $Id, 'Data' => $data]);
+
+                return false;
+            }
+
+            $result = DB::statement(
+                'CALL UpdateTaakById(?, ?, ?, ?, ?)',
+                [
+                    $Id,
+                    $data['Titel'],
+                    $data['Beschrijving'],
+                    $data['Deadline'],
+                    $data['Status'],
+                ]
+            );
+
+            if ($result) {
+                Log::info("Taak Id {$Id} succesvol bijgewerkt.");
+
+                return true;
+            } else {
+                Log::warning("Geen wijzigingen aangebracht voor taak Id {$Id}.");
+
+                return false;
+            }
+        } catch (\Exception $e) {
+            Log::error("Fout bij het bijwerken van taak Id {$Id}: {$e->getMessage()}");
+
+            return false;
+        }
+    }
+
     public static function DeleteTaakById(int $Id): bool
     {
         try {

@@ -57,14 +57,41 @@ class TakenController extends Controller
         return redirect()->route('dashboard')->with('success', 'Taak succesvol aangemaakt!');
     }
 
-    public function edit($id)
+    public function edit($Id)
     {
-        // Retrieve the task and return the edit view
+        $taak = $this->takenModel->find($Id);
+
+        return view('taken.edit', [
+            'titel' => 'Taak Bewerken',
+            'taak' => $taak,
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $Id)
     {
-        // Validate and update the task
+        $validated = $request->validate([
+            'titel' => 'required|string|max:255',
+            'beschrijving' => 'required|string',
+            'deadline' => 'required|date',
+            'status' => 'required|string|',
+        ]);
+
+        $data = [
+            'Titel' => $validated['titel'],
+            'Beschrijving' => $validated['beschrijving'],
+            'Deadline' => $validated['deadline'],
+            'Status' => $validated['status'],
+        ];
+
+
+        $update = $this->takenModel->updateTaakById($Id, $data);
+
+        if ($update === true) {
+            return redirect()->route('dashboard')->with('success', 'Taak succesvol bijgewerkt!');
+        }
+        else {
+            return redirect()->route('dashboard')->with('error', 'Er is een fout opgetreden bij het bijwerken van de taak. Probeer het later opnieuw.');
+        }
     }
 
     public function destroy($Id)
@@ -75,7 +102,7 @@ class TakenController extends Controller
             return redirect()->route('dashboard')->with('success', 'Taak succesvol verwijderd!');
         }
         else {
-            return redirect()->route('dashboard')->with('error', 'Er is een fout opgetreden bij het verwijderen van de taak.');
+            return redirect()->route('dashboard')->with('error', 'Er is een fout opgetreden bij het verwijderen van de taak. Probeer het later opnieuw.');
         }
     }
 }

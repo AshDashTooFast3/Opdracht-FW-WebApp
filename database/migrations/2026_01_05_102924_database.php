@@ -19,7 +19,7 @@ return new class extends Migration
             WeekNummer TINYINT NOT NULL,
             Titel VARCHAR(100) NOT NULL,
             Beschrijving VARCHAR(255) NOT NULL,
-            Status ENUM('Open', 'Afgerond') DEFAULT 'Open',
+            Status ENUM('Open', 'Afgerond', 'In Behandeling') DEFAULT 'Open',
             Deadline DATETIME NOT NULL,
             IsActief BIT DEFAULT 1,
             Opmerking VARCHAR(225) DEFAULT NULL,

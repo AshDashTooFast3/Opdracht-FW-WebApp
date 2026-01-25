@@ -113,10 +113,10 @@
                             <input type="hidden" name="taak_id" value="{{ $taak->Id }}">
 
                             <div @class([
-        'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-3',
-        'bg-green-500 border-green-600' => $taak->Status === 'Afgerond',
-        'bg-gray-800 border-gray-600' => $taak->Status !== 'Afgerond'
-    ])>
+                                'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-3',
+                                'bg-green-500 border-green-600' => $taak->Status === 'Afgerond',
+                                'bg-gray-800 border-gray-600' => $taak->Status !== 'Afgerond'
+                            ])>
                                 <input type="checkbox" class="mt-1 cursor-pointer" onchange="this.form.submit()" 
                                     {{ $taak->Status === 'Afgerond' ? 'checked' : '' }}>
 
@@ -128,11 +128,15 @@
                                         {{ $taak->Beschrijving }}
                                     </p>
                                 </div>
-                                <div>
-                                    <button type="submit" formaction="{{ route('taak.destroy', ['Id' => $taak->Id]) }}" 
+                                <div class="gap-4 flex">
+                                    <button type="submit" formaction="{{ route('taken.destroy', ['Id' => $taak->Id]) }}" 
                                         class="text-red-500 hover:text-red-700 font-semibold">
                                         <i class="bi bi-trash-fill cursor-pointer"></i>
                                     </button>
+                                    <a href="{{ route('taken.edit', ['Id' => $taak->Id]) }}" 
+                                        class="text-blue-500 hover:text-blue-700 font-semibold">
+                                        <i class="bi bi-pencil-fill cursor-pointer"></i>
+                                    </a>
                                 </div>
                             </div>
                         </form>

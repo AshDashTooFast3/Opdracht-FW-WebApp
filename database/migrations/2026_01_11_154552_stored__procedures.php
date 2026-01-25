@@ -64,6 +64,30 @@ return new class extends Migration
         END
     
         ');
+
+        DB::unprepared('
+        DROP PROCEDURE IF EXISTS UpdateTaakById;
+
+        CREATE PROCEDURE UpdateTaakById(
+            IN p_Id INT,
+            IN p_Titel VARCHAR(255),
+            IN p_Beschrijving VARCHAR(255),
+            IN p_Deadline DATETIME,
+            IN p_Status VARCHAR(50)
+        )
+
+        BEGIN
+
+            UPDATE Taken
+            SET Titel = p_Titel,
+                Beschrijving = p_Beschrijving,
+                Status = p_Status,
+                Deadline = p_Deadline
+            WHERE Id = p_Id;
+
+        END;
+
+        ');
     }
 
     /**
@@ -74,5 +98,6 @@ return new class extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS AantalTakenVanGebruiker');
         DB::unprepared('DROP PROCEDURE IF EXISTS getAllTakenById');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_DeleteTaakById');
+        DB::unprepared('DROP PROCEDURE IF EXISTS UpdateTaakById');
     }
 };
