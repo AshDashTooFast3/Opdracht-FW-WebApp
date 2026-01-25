@@ -117,6 +117,12 @@
                                         {{ $taak->Beschrijving }}
                                     </p>
                                 </div>
+                                <div>
+                                    <button type="submit" formaction="{{ route('taak.destroy', ['Id' => $taak->Id]) }}" 
+                                        class="text-red-500 hover:text-red-700 font-semibold">
+                                        Verwijder
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     @endforeach

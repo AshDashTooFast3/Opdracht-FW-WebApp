@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Taken extends Model
 {
@@ -41,11 +42,44 @@ class Taken extends Model
 
     public function getAllTakenById(int $GebruikerId): array
     {
-        $result = DB::select(
-            'CALL getAllTakenById(?)',
-            [$GebruikerId]
-        );
+        try {
+            if (empty($GebruikerId)) {
+                Log::warning('Ongeldig gebruiker Id opgegeven', ['GebruikerId' => $GebruikerId]);
 
-        return $result;
+                return [];
+            }
+            $result = DB::select(
+                'CALL getAllTakenById(?)',
+                [$GebruikerId]
+            );
+
+            Log::info("Taken voor gebruiker Id {$GebruikerId} succesvol opgehaald.");
+
+            return $result;
+        } catch (\Exception $e) {
+            Log::error("Fout bij het ophalen van taken voor gebruiker Id {$GebruikerId}: {$e->getMessage()}");
+
+            return [];
+        }
+    }
+
+    public static function DeleteTaakById(int $Id): bool
+    {
+        try {
+            if (empty($Id)) {
+                Log::warning('Ongeldig taak Id opgegeven voor verwijdering', ['TaakId' => $Id]);
+
+                return false;
+            }
+            DB::statement('CALL sp_DeleteTaakById(?)', [$Id]);
+
+            Log::info("Taak Id {$Id} succesvol verwijderd.");
+
+            return true;
+        } catch (\Exception $e) {
+            Log::error("Fout bij het verwijderen van taak Id {$Id}: {$e->getMessage()}");
+
+            return false;
+        }
     }
 }

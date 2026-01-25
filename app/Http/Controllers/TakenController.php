@@ -67,8 +67,15 @@ class TakenController extends Controller
         // Validate and update the task
     }
 
-    public function destroy($id)
+    public function destroy($Id)
     {
-        // Delete the task
+        $delete = $this->takenModel->DeleteTaakById($Id);
+
+        if ($delete === true) {
+            return redirect()->route('dashboard')->with('success', 'Taak succesvol verwijderd!');
+        }
+        else {
+            return redirect()->route('dashboard')->with('error', 'Er is een fout opgetreden bij het verwijderen van de taak.');
+        }
     }
 }

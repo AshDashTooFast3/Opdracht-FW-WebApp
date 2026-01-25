@@ -36,6 +36,18 @@ Route::post('taken/store', [TakenController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('taken.store');
 
+Route::get('taken/edit/{id}', [TakenController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('taken.edit');
+
+Route::put('taken/update/{id}', [TakenController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('taken.update');
+
+Route::post('taken/destroy/{Id}', [TakenController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('taak.destroy');
+
 Route::get('morgen', [MorgenController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('morgen');
