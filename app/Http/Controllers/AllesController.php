@@ -40,7 +40,7 @@ class AllesController extends Controller
 
         return view('alles',
             [
-                'titel' => 'alle taken voor jou',
+                'titel' => 'Hier zijn al jouw taken',
                 'taken' => $taken,
                 'aantalAfgerondeTaken' => $aantalAfgerondeTaken,
                 'aantalOpenstaandeTaken' => $aantalOpenstaandeTaken,

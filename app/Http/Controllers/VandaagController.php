@@ -41,7 +41,7 @@ class VandaagController extends Controller
 
         return view('dashboard',
             [
-                'titel' => 'Jouw taken voor vandaag',
+                'titel' => 'Hier zijn jouw taken voor vandaag',
                 'taken' => $taken,
                 'aantalAfgerondeTaken' => $aantalAfgerondeTaken,
                 'aantalOpenstaandeTaken' => $aantalOpenstaandeTaken,

@@ -1,6 +1,7 @@
 <x-layouts.app.topbar :taak="auth()->user()->name" />
 
-<x-layouts.app :title="__('Vandaag')">
+<x-layouts.app :title="__('Alle taken')">
+    <p class="m-2">{{ $titel }}</p>
 
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 
@@ -12,7 +13,7 @@
                     Afgeronde taken:
                 </h5>
                 <div class="font-semibold m-4">
-                    <p class="text-3xl"">{{ $aantalAfgerondeTaken }} Taken</p>
+                    <p class="text-3xl">{{ $aantalAfgerondeTaken }} Taken</p>
                     <br>
                     @if ($aantalAfgerondeTaken === 0)
                         <br>
@@ -99,12 +100,14 @@
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-3 rounded mb-4">
                             {{ session('success') }}
-                            <meta http-equiv="refresh" content="2;url={{ route('dashboard') }}">
+                            <meta name="previous-url" content="{{ url()->previous() }}">
+                            <meta http-equiv="refresh" content="3;url={{ route('alles') }}">
                         </div>
                     @elseif (session('error'))
                         <div class="bg-red-500 text-white p-3 rounded mb-4">
                             {{ session('error') }}
-                            <meta http-equiv="refresh" content="2;url={{ route('dashboard') }}">
+                            <meta name="previous-url" content="{{ url()->previous() }}">
+                            <meta http-equiv="refresh" content="3;url={{ route('alles') }}">
                         </div>
                     @endif
                     @foreach ($taken as $taak)
@@ -113,10 +116,10 @@
                             <input type="hidden" name="taak_id" value="{{ $taak->Id }}">
 
                             <div @class([
-                                'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-3',
-                                'bg-green-500 border-green-600' => $taak->Status === 'Afgerond',
-                                'bg-gray-800 border-gray-600' => $taak->Status !== 'Afgerond'
-                            ])>
+        'flex items-start gap-3 p-3 rounded-lg border transition-all hover:bg-gray-900 mb-3',
+        'bg-green-500 border-green-600' => $taak->Status === 'Afgerond',
+        'bg-gray-800 border-gray-600' => $taak->Status !== 'Afgerond'
+    ])>
                                 <input type="checkbox" class="mt-1 cursor-pointer" onchange="this.form.submit()" 
                                     {{ $taak->Status === 'Afgerond' ? 'checked' : '' }}>
 

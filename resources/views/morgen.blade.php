@@ -1,6 +1,8 @@
 <x-layouts.app.topbar :taak="auth()->user()->name" />
 
 <x-layouts.app :title="__('Morgen')">
+     <p class="m-2">{{ $titel }}</p>
+
 
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 
@@ -12,7 +14,7 @@
                     Afgeronde taken:
                 </h5>
                 <div class="font-semibold m-4">
-                    <p class="text-3xl"">{{ $aantalAfgerondeTaken }} Taken</p>
+                    <p class="text-3xl">{{ $aantalAfgerondeTaken }} Taken</p>
                     <br>
                     @if ($aantalAfgerondeTaken === 0)
                         <br>
@@ -99,12 +101,14 @@
                     @if (session('success'))
                         <div class="bg-green-500 text-white p-3 rounded mb-4">
                             {{ session('success') }}
-                            <meta http-equiv="refresh" content="2;url={{ route('dashboard') }}">
+                            <meta name="previous-url" content="{{ url()->previous() }}">
+                            <meta http-equiv="refresh" content="3;url={{ route('morgen') }}">
                         </div>
                     @elseif (session('error'))
                         <div class="bg-red-500 text-white p-3 rounded mb-4">
                             {{ session('error') }}
-                            <meta http-equiv="refresh" content="2;url={{ route('dashboard') }}">
+                            <meta name="previous-url" content="{{ url()->previous() }}">
+                            <meta http-equiv="refresh" content="3;url={{ route('morgen') }}">
                         </div>
                     @endif
                     @foreach ($taken as $taak)

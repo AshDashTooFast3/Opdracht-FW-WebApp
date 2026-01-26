@@ -19,6 +19,7 @@ return new class extends Migration
             Titel VARCHAR(100) NOT NULL,
             Beschrijving VARCHAR(255) NOT NULL,
             Status ENUM('Open', 'Afgerond', 'In Behandeling') DEFAULT 'Open',
+            Type ENUM ('School', 'Werk', 'Prive', 'Side-Project') DEFAULT NULL,
             Deadline DATETIME NOT NULL,
             IsActief BIT DEFAULT 1,
             Opmerking VARCHAR(225) DEFAULT NULL,

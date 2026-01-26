@@ -40,7 +40,7 @@ class MorgenController extends Controller
 
         return view('morgen',
             [
-                'titel' => 'Jouw taken voor morgen',
+                'titel' => 'Hier zijn jouw taken voor morgen',
                 'taken' => $taken,
                 'aantalAfgerondeTaken' => $aantalAfgerondeTaken,
                 'aantalOpenstaandeTaken' => $aantalOpenstaandeTaken,

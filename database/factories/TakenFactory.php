@@ -22,6 +22,7 @@ class TakenFactory extends Factory
             'Beschrijving' => $this->faker->sentence(),
             'Status' => $this->faker->randomElement(['Open', 'Afgerond']),
             'Deadline' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'Type' => $this->faker->randomElement(['School', 'Werk', 'Prive', 'Side-Project']),
             'IsActief' => $this->faker->boolean(90),
             'Opmerking' => $this->faker->optional()->sentence(),
             'DatumAangemaakt' => $this->faker->dateTime(),

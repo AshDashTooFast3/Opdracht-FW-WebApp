@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'Titel' => 'Laravel oefenen',
             'Beschrijving' => 'Oefenen met Laravel framework',
             'Deadline' => now(),
+            'Type' => NULL,
             'Status' => 'Open',
         ]);
 
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             'GebruikerId' => 1,
             'Titel' => 'PHP oefenen',
             'Beschrijving' => 'Oefenen met PHP taal',
+            'Type' => NULL,
             'Deadline' => now()->addDay(),
             'Status' => 'Open',
         ]);
