@@ -19,7 +19,6 @@ class TakenFactory extends Factory
         return [
             'GebruikerId' => User::factory(),
             'Titel' => $this->faker->word(),
-            'Weeknummer' => date('W', strtotime('now')),
             'Beschrijving' => $this->faker->sentence(),
             'Status' => $this->faker->randomElement(['Open', 'Afgerond']),
             'Deadline' => $this->faker->dateTimeBetween('now', '+1 month'),

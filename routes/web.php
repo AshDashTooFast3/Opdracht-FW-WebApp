@@ -11,9 +11,7 @@ use App\Http\Controllers\TakenController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
-use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,7 +21,7 @@ Route::get('/dashboard', [VandaagController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::post('/taak/check', [VandaagController::class, 'checkTaak'])
+Route::post('/taak/check', [TakenController::class, 'checkTaak'])
     ->middleware(['auth', 'verified'])
     ->name('checkTaak');
 

@@ -18,6 +18,19 @@ class TakenController extends Controller
         $this->takenModel = new Taken;
         $this->takenLabelsKoppel = new TaakLabelKoppelingen;
     }
+    public function checkTaak(Request $request)
+    {
+        $taak = Taken::findOrFail($request->taak_id);
+
+        // Toggle status
+        $taak->Status = $taak->Status === 'Afgerond'
+            ? 'Open'
+            : 'Afgerond';
+
+        $taak->save();
+
+        return redirect()->route('dashboard');
+    }
 
     public function create()
     {

@@ -40,6 +40,31 @@ class Taken extends Model
         return $this->belongsTo(User::class, 'GebruikerId');
     }
 
+    //taken voor vandaag ophalen van een gebruiker
+    public function getTakenVoorVandaagById (int $GebruikerId): array
+    {
+        try {
+            if (empty($GebruikerId)) {
+                Log::warning('Ongeldig gebruiker Id opgegeven', ['GebruikerId' => $GebruikerId]);
+
+                return [];
+            }
+            $result = DB::select(
+                'CALL getTakenVoorVandaagById(?)',
+                [$GebruikerId]
+            );
+
+            Log::info("Taken voor vandaag voor gebruiker Id {$GebruikerId} succesvol opgehaald.");
+
+            return $result;
+        } catch (\Exception $e) {
+            Log::error("Fout bij het ophalen van taken voor vandaag voor gebruiker Id {$GebruikerId}: {$e->getMessage()}");
+
+            return [];
+        }
+    }
+
+    //alle taken ophalen van een gebruiker
     public function getAllTakenById(int $GebruikerId): array
     {
         try {

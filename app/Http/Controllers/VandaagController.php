@@ -18,7 +18,7 @@ class VandaagController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $taken = collect($this->taakModel->getAllTakenById($GebruikerId));
+        $taken = collect($this->taakModel->getTakenVoorVandaagById($GebruikerId));
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;
@@ -48,19 +48,5 @@ class VandaagController extends Controller
                 'percentage' => $percentage,
             ]
         );
-    }
-
-    public function checkTaak(Request $request)
-    {
-        $taak = Taken::findOrFail($request->taak_id);
-
-        // Toggle status
-        $taak->Status = $taak->Status === 'Afgerond'
-            ? 'Open'
-            : 'Afgerond';
-
-        $taak->save();
-
-        return redirect()->route('dashboard');
     }
 }

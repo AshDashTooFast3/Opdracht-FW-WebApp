@@ -10,7 +10,6 @@ CREATE PROCEDURE getAllTakenById(
 
 BEGIN 
 	SELECT t.Id,
-		   t.WeekNummer,
 		   t.Titel,
 		   t.Beschrijving,
 		   t.Status,
