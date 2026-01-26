@@ -1,22 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use \App\Models\Taken;
+
+use App\Models\Taken;
 
 class SideProjectenController extends Controller
 {
     private $taakModel;
+
     public function __construct()
     {
-        $this->taakModel = new Taken();
+        $this->taakModel = new Taken;
     }
 
     public function index()
     {
-        
+
         $GebruikerId = auth()->id();
 
-        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'side-projecten');
+        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'Side-Project');
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;

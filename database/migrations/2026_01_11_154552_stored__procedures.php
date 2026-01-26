@@ -38,7 +38,8 @@ return new class extends Migration
                 t.Titel,
                 t.Beschrijving,
                 t.Status,
-                t.Deadline
+                t.Deadline,
+                t.Type
             FROM Taken t
             INNER JOIN TaakLabelKoppelingen tlk ON t.Id = tlk.TaakId
             WHERE t.Id = tlk.TaakId
@@ -105,6 +106,25 @@ return new class extends Migration
             AND tlk.IsActief = 1
             AND DATE(t.Deadline) = CURDATE();
         END
+        ');
+
+        DB::unprepared('
+        DROP PROCEDURE IF EXISTS getTakenVoorMorgenById;
+        CREATE PROCEDURE getTakenVoorMorgenById(
+            IN p_GebruikerId INT
+         )
+         BEGIN 
+             SELECT t.Id,
+                t.Titel,
+                t.Beschrijving,
+                t.Status,
+                t.Deadline
+            FROM Taken t
+            INNER JOIN TaakLabelKoppelingen tlk ON t.Id = tlk.TaakId
+            WHERE tlk.GebruikerId = p_GebruikerId
+            AND tlk.IsActief = 1
+            AND DATE(t.Deadline) = CURDATE() + INTERVAL 1 DAY;
+         END
         ');
     }
 

@@ -17,7 +17,7 @@ class WerkController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'werk');
+        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'Werk');
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;

@@ -17,7 +17,7 @@ class PriveController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'prive');
+        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'Prive');
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;

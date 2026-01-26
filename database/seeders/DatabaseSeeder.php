@@ -42,6 +42,48 @@ class DatabaseSeeder extends Seeder
             'Status' => 'Open',
         ]);
 
+        //specifieke taak voor school
+        Taken::factory(2)->create([
+            'GebruikerId' => 1,
+            'Titel' => 'Project maken',
+            'Beschrijving' => 'Het project voor school afmaken',
+            'Type' => 'School',
+            'Deadline' => now()->addDay(),
+            'Status' => 'Open',
+        ]);
+
+        //specifieke taak voor werk
+        Taken::factory(2)->create([
+            'GebruikerId' => 1,
+            'Titel' => 'Verslag schrijven',
+            'Beschrijving' => 'Het verslag voor school schrijven',
+            'Type' => 'Werk',
+            'Deadline' => now()->addDay(),
+            'Status' => 'Open',
+        ]);
+
+         //specifieke taak voor prive
+        Taken::factory(2)->create([
+            'GebruikerId' => 1,
+            'Titel' => 'Boodschappen doen',
+            'Beschrijving' => 'Naar de supermarkt gaan om boodschappen te doen',
+            'Type' => 'Prive',
+            'Deadline' => now()->addDay(),
+            'Status' => 'Open',
+        ]);
+
+         //specifieke taak voor side-projecten
+        Taken::factory(2)->create([
+            'GebruikerId' => 1,
+            'Titel' => 'Website bouwen',
+            'Beschrijving' => 'Mijn eigen website bouwen met HTML, CSS en JavaScript',
+            'Type' => 'Side-Project',
+            'Deadline' => now()->addDay(),
+            'Status' => 'Open',
+        ]);
+
+
+
         // voorkomt forein key constraint errors
         $this->call(LabelSeeder::class);
 
@@ -54,6 +96,21 @@ class DatabaseSeeder extends Seeder
         TaakLabelKoppelingen::factory()->create(['TaakId' => 4, 'LabelId' => 1]);
         TaakLabelKoppelingen::factory()->create(['TaakId' => 5, 'LabelId' => 2]);
         TaakLabelKoppelingen::factory()->create(['TaakId' => 6, 'LabelId' => 3]);
+
+        //School taken
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 7, 'LabelId' => 1]);
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 8, 'LabelId' => 2]);
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 9, 'LabelId' => 3]);
+
+        //Werk taken
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 10, 'LabelId' => 1]);
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 11, 'LabelId' => 2]);
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 12, 'LabelId' => 3]);
+
+        //Prive taken
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 13, 'LabelId' => 1]);
+        TaakLabelKoppelingen::factory()->create(['TaakId' => 14, 'LabelId' => 2]);
+
 
         $this->call([
             TakenSeeder::class,

@@ -17,7 +17,7 @@ class SchoolController extends Controller
     {
         $GebruikerId = auth()->id();
 
-        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'school');
+        $taken = collect($this->taakModel->getAllTakenById($GebruikerId))->where('Type', 'School');
 
         $aantalAfgerondeTaken = 0;
         $aantalOpenstaandeTaken = 0;

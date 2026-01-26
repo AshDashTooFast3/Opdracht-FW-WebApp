@@ -13,7 +13,8 @@ BEGIN
 		   t.Titel,
 		   t.Beschrijving,
 		   t.Status,
-		   t.Deadline
+		   t.Deadline,
+		   t.Type
 	FROM Taken t
 	INNER JOIN TaakLabelKoppelingen tlk ON t.Id = tlk.TaakId
 	WHERE t.Id = tlk.TaakId
