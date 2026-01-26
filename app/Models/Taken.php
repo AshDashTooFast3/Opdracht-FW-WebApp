@@ -64,6 +64,26 @@ class Taken extends Model
         }
     }
 
+    //taken voor morgen ophalen van een gebruiker
+    public function getTakenVoorMorgenById(int $GebruikerId): array
+    {
+        try {
+            if (empty($GebruikerId)) {
+                Log::warning('Ongeldig gebruiker Id opgegeven', ['GebruikerId' => $GebruikerId]);
+                return [];
+            }
+            $result = DB::select(
+                'CALL getTakenVoorMorgenById(?)',
+                [$GebruikerId]
+            );
+            Log::info("Taken voor morgen voor gebruiker Id {$GebruikerId} succesvol opgehaald.");
+            return $result;
+        } catch (\Exception $e) {
+            Log::error("Fout bij het ophalen van taken voor morgen voor gebruiker Id {$GebruikerId}: {$e->getMessage()}");
+            return [];
+        }
+    }
+
     //alle taken ophalen van een gebruiker
     public function getAllTakenById(int $GebruikerId): array
     {
