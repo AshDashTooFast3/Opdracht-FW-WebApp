@@ -28,6 +28,7 @@ class Taken extends Model
         'Titel',
         'Beschrijving',
         'Status',
+        'Type',
         'Deadline',
         'IsActief',
         'Opmerking',
@@ -118,13 +119,14 @@ class Taken extends Model
             }
 
             $result = DB::statement(
-                'CALL UpdateTaakById(?, ?, ?, ?, ?)',
+                'CALL UpdateTaakById(?, ?, ?, ?, ?, ?)',
                 [
                     $Id,
                     $data['Titel'],
                     $data['Beschrijving'],
                     $data['Deadline'],
                     $data['Status'],
+                    $data['Type'] ?? NULL,
                 ]
             );
 

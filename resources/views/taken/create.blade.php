@@ -30,6 +30,18 @@
                         class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 @error('deadline') border-red-500 @enderror">
                     @error('deadline') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
+                <div>
+                    <label for="type" class="block text-sm font-medium text-gray-300 mb-2">Type</label>
+                    <select id="type" name="type"
+                        class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 @error('type') border-red-500 @enderror">
+                        <option value="null" {{ old('type') === 'NULL' ? 'selected' : '' }}>geen categorie</option>
+                        <option value="werk" {{ old('type') === 'Werk' ? 'selected' : '' }}>Werk</option>
+                        <option value="prive" {{ old('type') === 'Prive' ? 'selected' : '' }}>Prive</option>
+                        <option value="side-project" {{ old('type') === 'Side-Project' ? 'selected' : '' }}>Side-Project</option>
+                        <option value="school" {{ old('type') === 'School' ? 'selected' : '' }}>School</option>
+                    </select>
+                    @error('type') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
                 <div class="flex justify-end">
                     <button type="submit"
                         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer transition">Verstuur

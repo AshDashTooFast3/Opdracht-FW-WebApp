@@ -73,7 +73,8 @@ return new class extends Migration
             IN p_Titel VARCHAR(255),
             IN p_Beschrijving VARCHAR(255),
             IN p_Deadline DATETIME,
-            IN p_Status VARCHAR(50)
+            IN p_Status VARCHAR(50),
+            IN p_Type VARCHAR(50)
         )
 
         BEGIN
@@ -82,6 +83,7 @@ return new class extends Migration
             SET Titel = p_Titel,
                 Beschrijving = p_Beschrijving,
                 Status = p_Status,
+                Type = p_Type,
                 Deadline = p_Deadline
             WHERE Id = p_Id;
 

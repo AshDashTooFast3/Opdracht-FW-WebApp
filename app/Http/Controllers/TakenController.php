@@ -52,7 +52,9 @@ class TakenController extends Controller
             'titel' => 'required|string|max:255',
             'beschrijving' => 'required|string',
             'deadline' => 'required|date',
+            'type' => 'nullable|string',
         ]);
+        // dd($validated);
 
         $taak = Taken::create([
             'id' => (string) Str::uuid(),
@@ -60,6 +62,7 @@ class TakenController extends Controller
             'Titel' => $validated['titel'],
             'Beschrijving' => $validated['beschrijving'],
             'Deadline' => $validated['deadline'],
+            'Type' => $validated['type'] ?? NULL,
             'Status' => 'Open',
             'IsActief' => true,
         ]);
@@ -93,6 +96,7 @@ class TakenController extends Controller
             'beschrijving' => 'required|string',
             'deadline' => 'required|date',
             'status' => 'required|string|',
+            'type' => 'nullable|string',
         ]);
 
         $data = [
@@ -100,6 +104,7 @@ class TakenController extends Controller
             'Beschrijving' => $validated['beschrijving'],
             'Deadline' => $validated['deadline'],
             'Status' => $validated['status'],
+            'Type' => $validated['type'] ?? NULL,
         ];
 
         $update = $this->takenModel->updateTaakById($Id, $data);

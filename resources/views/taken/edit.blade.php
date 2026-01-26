@@ -40,9 +40,21 @@
                         autofocus>
                         <option value="open" {{ old('status', $taak->Status) === 'Open' ? 'selected' : '' }}>Open</option>
                         <option value="in_behandeling" {{ old('status', $taak->Status) === 'In Behandeling' ? 'selected' : '' }}>In Behandeling</option>
-                        <option value="afgerond" {{ old('status', $taak->Status) === 'Afgerond' ? 'selected' : '' }}>Afgerond</option>
+                        <option value="afgerond" {{ old('status', $taak->Status) === 'Afgerond' ? 'selected' : '' }}>
+                            Afgerond</option>
                     </select>
                     @error('status') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div>
+                    <label for="type" class="block text-sm font-medium text-gray-300 mb-2">Type</label>
+                    <select id="type" name="type"
+                        class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 @error('type') border-red-500 @enderror">
+                        <option value="werk" {{ old('type', $taak->Type) === 'Werk' ? 'selected' : '' }}>Werk</option>
+                        <option value="prive" {{ old('type', $taak->Type) === 'Prive' ? 'selected' : '' }}>Prive</option>
+                        <option value="side-project" {{ old('type', $taak->Type) === 'Side-Project' ? 'selected' : '' }}>Side-Project</option>
+                        <option value="school" {{ old('type', $taak->Type) === 'School' ? 'selected' : '' }}>School</option>
+                    </select>
+                    @error('type') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="flex justify-end">
                     <button type="submit"
